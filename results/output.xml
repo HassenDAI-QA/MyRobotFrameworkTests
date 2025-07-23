@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2 (Python 3.13.0 on win32)" generated="2025-07-21T14:55:00.008116" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Shopping Cart" source="C:\Users\waialys_dhassen\Desktop\RobotPractice\tests\test_shopping_cart.robot">
+<kw name="Open Browser And Go To Login Page" owner="shopping_keywords" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-07-21T14:55:00.208577" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<arg>${URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-07-21T14:55:00.208408" elapsed="1.719028"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-07-21T14:55:01.927669" elapsed="0.020420"/>
+</kw>
+<status status="PASS" start="2025-07-21T14:55:00.207985" elapsed="1.740230"/>
+</kw>
+<test id="s1-t1" name="Test Ajouter Un Produit Au Panier" line="9">
+<kw name="Login With Valid Credentials" owner="shopping_keywords">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-21T14:55:01.949496" level="INFO">Typing text 'standard_user' into text field 'id=user-name'.</msg>
+<arg>id=user-name</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-21T14:55:01.949115" elapsed="0.074743"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-07-21T14:55:02.024217" level="INFO">Typing text 'secret_sauce' into text field 'id=password'.</msg>
+<arg>id=password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-21T14:55:02.024015" elapsed="0.055803"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-07-21T14:55:02.080209" level="INFO">Clicking button 'id=login-button'.</msg>
+<arg>id=login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-21T14:55:02.079979" elapsed="0.069887"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>css=.inventory_list</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-07-21T14:55:02.150100" elapsed="0.008772"/>
+</kw>
+<status status="PASS" start="2025-07-21T14:55:01.948869" elapsed="0.210108"/>
+</kw>
+<kw name="Add Product To Cart" owner="shopping_keywords">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-07-21T14:55:02.159752" level="INFO">Clicking button 'xpath=//div[text()='Sauce Labs Backpack']/ancestor::div[@class='inventory_item']//button'.</msg>
+<arg>xpath=//div[text()='${PRODUCT_NAME}']/ancestor::div[@class='inventory_item']//button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-21T14:55:02.159591" elapsed="0.058985"/>
+</kw>
+<status status="PASS" start="2025-07-21T14:55:02.159373" elapsed="0.059304"/>
+</kw>
+<kw name="Go To Cart" owner="shopping_keywords">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-07-21T14:55:02.219304" level="INFO">Clicking element 'class=shopping_cart_link'.</msg>
+<arg>class=shopping_cart_link</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-07-21T14:55:02.219170" elapsed="0.049184"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Your Cart</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-07-21T14:55:02.268509" elapsed="0.007119"/>
+</kw>
+<status status="PASS" start="2025-07-21T14:55:02.218966" elapsed="0.056762"/>
+</kw>
+<kw name="Verify Product Is In Cart" owner="shopping_keywords">
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-07-21T14:55:02.290349" level="INFO">Current page contains text 'Sauce Labs Backpack'.</msg>
+<arg>${PRODUCT_NAME}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-07-21T14:55:02.276358" elapsed="0.014086"/>
+</kw>
+<status status="PASS" start="2025-07-21T14:55:02.276060" elapsed="0.014475"/>
+</kw>
+<status status="PASS" start="2025-07-21T14:55:01.948294" elapsed="0.342606"/>
+</test>
+<kw name="Close Browser" owner="shopping_keywords" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-07-21T14:55:02.292009" elapsed="2.111000"/>
+</kw>
+<status status="PASS" start="2025-07-21T14:55:02.291808" elapsed="2.111470"/>
+</kw>
+<doc>Teste le processus d'ajout d'un produit au panier sur Saucedemo</doc>
+<status status="PASS" start="2025-07-21T14:55:00.009560" elapsed="4.393840"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Test Shopping Cart" id="s1" pass="1" fail="0" skip="0">Test Shopping Cart</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
