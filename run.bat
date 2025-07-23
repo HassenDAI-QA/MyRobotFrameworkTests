@@ -8,8 +8,17 @@ robot -d results tests || exit /b 2
 echo Tests terminés.
 pause
 
-if %ERRORLEVEL% equ 0 (
-  powershell -Command "$cred=New-Object System.Management.Automation.PSCredential('votre.email@gmail.com', (ConvertTo-SecureString 'votre-mot-de-passe-app' -AsPlainText -Force)); Send-MailMessage -From 'jenkins@votresociete.com' -To 'hassendai.info@gmail.com' -Subject 'SUCCÈS: Tests Robot' -Body 'Tous les tests ont réussi.<br>Rapport: <a href=\"%BUILD_URL%\">Lien Jenkins</a>' -BodyAsHtml -SmtpServer 'smtp.gmail.com' -Port 587 -UseSsl -Credential $cred -ErrorAction Stop"
-) else (
-  powershell -Command "$cred=New-Object System.Management.Automation.PSCredential('votre.email@gmail.com', (ConvertTo-SecureString 'votre-mot-de-passe-app' -AsPlainText -Force)); Send-MailMessage -From 'jenkins@votresociete.com' -To 'hassendai.info@gmail.com' -Subject 'ÉCHEC: Tests Robot' -Body 'Des tests ont échoué.<br>Consulter: <a href=\"%BUILD_URL%\">Rapport d\'erreur</a>' -BodyAsHtml -SmtpServer 'smtp.gmail.com' -Port 587 -UseSsl -Credential $cred -ErrorAction Stop"
-)
+$EmailFrom = "hassen.dai@waialys-group.com"
+$EmailTo = "hassendai.info@gmail.com"
+$Subject = "Statut des Tests"
+$Body = "Résultat des tests Robot Framework"
+$SMTPServer = "smtp.gmail.com"
+$SMTPPort = "587"
+$Password = "votre-mot-de-passe-d-application"  # Les 16 caractères
+
+$SecurePassword = ConvertTo-SecureString $Password -AsPlainText -Force
+$Credential = New-Object System.Management.Automation.PSCredential ($EmailFrom, $SecurePassword)
+
+Send-MailMessage -From $EmailFrom -To $EmailTo -Subject $Subject -Body $Body `
+-SmtpServer $SMTPServer -Port $SMTPPort -UseSsl -Credential $Credential `
+-ErrorAction Stop
