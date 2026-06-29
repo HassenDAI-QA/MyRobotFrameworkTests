@@ -14,3 +14,8 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: "Message that will be displayed on users' first issue by HASSEN DAI"
         pr-message: "Message that will be displayed on users' first pull request by HASSEN DAI"
+        
+    - name: Manual trigger message
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        echo "Workflow manually triggered by HASSEN DAI"
